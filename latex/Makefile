@@ -4,12 +4,10 @@ all: compile
 
 compile:
 	pdflatex $(NAME).tex
-	# bibtex $(NAME).aux
-	# pdflatex $(NAME).tex
-	# pdflatex $(NAME).tex
+	mv $(NAME).pdf ../
 
 view: compile
-	evince $(NAME).pdf &
+	evince ../$(NAME).pdf &
 
 clean:
 	rm *.blg *.bbl *.aux *.log *.out
