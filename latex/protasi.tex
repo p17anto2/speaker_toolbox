@@ -32,29 +32,50 @@
 \LARGE\textbf{\wen{Speaker Toolbox}}\\
 \vspace{1cm}
 \begin{tabularx}{\textwidth}{lXr}
-	\hspace{-1cm}\LargeΑντωνακάκης Απόστολος &  & \hspace{3cm}\LargeΠ2017095 \\
-    \hspace{-1cm}\LargeΜιχαήλ Ζώης &  & \hspace{3cm}\LargeΠ2010057
+	\hspace{-1cm}\LargeΑντωνακάκης Απόστολος &  & \hspace{5cm}\LargeΠ2017095 \\
+    \hspace{-1cm}\LargeΜιχαήλ Ζώης &  & \hspace{5cm}\LargeΠ2010057
 \end{tabularx}
 \endgroup
 
-\section{Πεδίο Ενδιαφέροντος}
-\paragraph{} \wen{TODO}
+\section{Σκοπός Εφαρμογής}
+\paragraph{} Το \wen{Speaker Toolbox} θα είναι μία \wen{desktop} εφαρμογή που θα περιέχει μερικές λειτουργίες
+καθαρισμού/βελτιστοποίησης ηχογραφήσεων ομιλίας. Σκοπός είναι η τελική εφαρμογή να μπορεί να χρησιμοποιηθεί 
+από χρήστες (π.χ. φοιτητές που θέλουν να παρουσιάσουν μια εργασία μέσω
+\href{https://www.youtube.com/watch?v=UNVJ3mweSnA}{\wen{Youtube}}) που δεν είναι απαραίτητα εξοικειωμένοι με εφαρμογές επεξεργασίας ήχου (π.χ. \wen{\href{https://www.reaper.fm/}{Reaper},
+\href{https://www.audacityteam.org/}{Audacity}}), και δεν έχουν πρόσβαση σε επαγγελματικό εξοπλισμό
+ηχογράφησης. Για να επιτευχθεί αυτό, η εφαρμογή θα έχει μερικές απλές λειτουργίες προς αυτό το σκοπό με 
+ξεκάθαρες οδηγίες.
 
 \section{Βασικά Στοιχεία Εφαρμογής}
-\begin{enumerate}
+\begin{itemize}
   \item \textbf{Απομόνωση Επικρατέστερων Συχνοτήτων:} Μέσω του μετασχηματισμού \wen{Fourier}, θα εντοπίζονται 
     οι συχνότητες και αντίστοιχες εντάσεις τους, ώστε να απομονωθούν αυτές που αντιστοιχούν στη φωνή του 
     ομιλητή. Η αναγνώριση των συχνοτήτων θα γίνεται από το χρήστη, ο οποίος θα ορίζει ένα όριο έντασης, κάτω
-    από το οποίο οι οι εντάσεις των συχνοτήτων θα αφαιρούνται, ή θα μειώνονται. (\href{https://www.mathworks.
-    com/help/matlab/math/fourier-transforms.html}{Παράδειγμα \wen{Fourier Transformation} στο \wen{Matlab}})
+    από το οποίο οι οι εντάσεις των συχνοτήτων θα αφαιρούνται, ή θα μειώνονται.
+    (\href{https://www.mathworks.com/help/matlab/math/fourier-transforms.html}{Παράδειγμα \wen{Fourier
+    Transformation} στο \wen{Matlab}})
+  \item \textbf{Αφαίρεση Συχνών Συχνοτήτων:} Αν μία συχνότητα έχει μεγαλύτερη συχνότητα εμφάνισης από ένα όριο 
+    που θα ορίζει ο χρήστης, αυτή η συχνότητα θα θεωρείται θόρυβος και θα αφαιρείται (ή θα μειώνεται η έντασή 
+    της).
   \item \textbf{\wen{De-Esser:}} Στις ηχογραφήσεις φωνής, μερικές φορές κάποια σύμφωνα ακούγονται περισσότερα
     από τα υπόλοιπα (\wen{Sibilance~\cite{sibilance}}). Οι συχνότητες στις οποίες συμβαίνει αυτό είναι γύρω
     στα 5--8\wen{kHz}~\cite{sibilance_freq}.  Με παρόμοια διαδικασία όπως και πριν, ο 
     χρήστης θα μπορεί να εντοπίσει τις συχνότητες αυτές και να τους μειώσει την ένταση.
-  \item \textbf{\wen{Low Cut Filter:}} Κόβει χαμηλές συχνότητες.
-  \item \textbf{\wen{High Cut Filter:}} Κόβει ψηλές συχνότητες.
-\end{enumerate}
+  \item \textbf{\wen{Low Cut Filter:}} Φίλτρο που αφαιρεί σταδιακά συχνότητες κάτω από ένα όριο που 
+    ορίζει ο χρήστης.
+  \item \textbf{\wen{High Cut Filter:}} Φίλτρο που αφαιρεί σταδιακά συχνότητες πάνω από ένα όριο που ορίζει ο
+    χρήστης.
+\end{itemize}
  
+\section{Παραδοτέα}
+\begin{enumerate}
+  \item Ανοιχτός Κώδικας στο \wen{Github}.
+  \item Αναφορά σε μορφή \wen{PDF} των πεπραγμένων και των επιλογών που έγιναν κατά τη διάρκεια δημιουργίας
+    της εφαρμογής.
+  \item Βίντεο Παρουσίασης της εφαρμογής.
+  \item Παρουσίαση \wen{Powerpoint} της εφαρμογής.
+\end{enumerate}
+
 \en{}
 \begin{thebibliography}{9}
   \bibitem{sibilance} {\url{https://www.sageaudio.com/blog/pre-mastering/sibilance-can-control-vocals.php}}
