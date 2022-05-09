@@ -2,6 +2,8 @@
 
 close all; clear all;
 
+pkg load parallel
+
 function p = project()
     p.file = "";
     p.orig_data = [];
@@ -41,20 +43,38 @@ function update_plot()
   guidata(gcf, h);
 end
 
+# function player_play()
+#   h = guidata(gcf);
+#   samples = 4096;
+#   fragments = size(h.project.data)(:, 1) / samples;
+#   remainder = rem(size(h.project.data)(:, 1), samples);
+#   for i = 1:fragments
+#     h = guidata(gcf);
+#     if i < floor(fragments)
+#       player = audioplayer(h.project.data(i*samples:i*samples+samples) * h.project.volume, h.project.FS,8,7);
+#     else
+#       player = audioplayer(h.project.data(i*samples:i*samples+remainder) * h.project.volume, h.project.FS,8,7);
+#     end
+#     playblocking(player);
+#     drawnow()
+#   end
+# end
+
 function player_play()
   h = guidata(gcf);
   samples = 4096;
   fragments = size(h.project.data)(:, 1) / samples;
   remainder = rem(size(h.project.data)(:, 1), samples);
   for i = 1:fragments
-    h = guidata(gcf);
     if i < floor(fragments)
-      player = audioplayer(h.project.data(i*samples:i*samples+samples) * h.project.volume, h.project.FS,8,7);
+      data = h.project.data(i * samples: i * samples + samples);
     else
-      player = audioplayer(h.project.data(i*samples:i*samples+remainder) * h.project.volume, h.project.FS,8,7);
-    end;
+      data = h.project.data(i*samples:i*samples+remainder);
+    end
+    drawnow();
+    proc_data = audio(data);
+    player = audioplayer(proc_data, h.project.FS, 8, 7);
     playblocking(player);
-    drawnow()
   end
 end
 
@@ -97,7 +117,7 @@ window.editor_lvfm_threshold = uicontrol(window.editor_lvfm,
                                          "style", "slider",
                                          "position", [0 .5 1 .5],
                                          "value", 0,
-                                         "callback", @audio,
+                                         # "callback", @audio,
                                          "string", "Threshold");
 
 window.editor_lvfm_volume = uicontrol(window.editor_lvfm,
@@ -106,7 +126,7 @@ window.editor_lvfm_volume = uicontrol(window.editor_lvfm,
                                       "style", "slider",
                                       "position", [0 0 1 .5],
                                       "value", 1,
-                                      "callback", @audio,
+                                      # "callback", @audio,
                                       "string", "Volume");
 
 window.editor_volume = uicontrol(window.editor,
@@ -115,7 +135,7 @@ window.editor_volume = uicontrol(window.editor,
                                  "horizontalalignment", "left",
                                  "position", [0 0 100 30],
                                  "value", 1,
-                                 "callback", @audio,
+                                 # "callback", @audio,
                                  "string", "volume");
                                  
 window.control = uibuttongroup("position", [0 .25 1 .10]);
